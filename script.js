@@ -1,4 +1,3 @@
-console.log("hello");
 const roman = {
   M: 1000,
   CM: 900,
@@ -14,7 +13,15 @@ const roman = {
   IV: 4,
   I: 1,
 };
-let userNumber = document.querySelector("#user-number").value;
+
+const numberInput = document.querySelector("#number");
+const output = document.querySelector("#output");
+const convertBtn = document.querySelector("#convert-btn");
+
+convertBtn.addEventListener("click", () => {
+  let userNumber = Number(numberInput.value);
+  output.textContent = convertToRoman(userNumber);
+});
 
 function getKeyByValue(object, value) {
   const values = Object.values(object);
@@ -27,8 +34,13 @@ function getKeyByValue(object, value) {
 }
 
 function convertToRoman(number) {
-  if (number >= 4000) {
-    return false;
+  if (number === "") {
+    return "Please enter a valid number";
+  }
+  if (number < 1) {
+    return "Please enter a number greater than or equal to 1";
+  } else if (number >= 4000) {
+    return "Please enter a number less than or equal to 3999";
   } else {
     let numArray = number.toString().split("");
     let ones = Number(numArray[numArray.length - 1]);
@@ -104,8 +116,6 @@ function convertToRoman(number) {
       romanNumeral.unshift(romanThousands);
     }
 
-    console.log(romanNumeral.toString().replaceAll(",", ""));
+    return romanNumeral.toString().replaceAll(",", "");
   }
 }
-convertToRoman(2863);
-//convertToRoman(userNumber);

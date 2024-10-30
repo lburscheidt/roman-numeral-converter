@@ -34,7 +34,8 @@ function getKeyByValue(object, value) {
 }
 
 function convertToRoman(number) {
-  if (number === "") {
+  console.log(number);
+  if (number === "" || number === 0) {
     return "Please enter a valid number";
   }
   if (number < 1) {
@@ -45,13 +46,16 @@ function convertToRoman(number) {
     let numArray = number.toString().split("");
     let ones = Number(numArray[numArray.length - 1]);
     let tensDigit = Number(numArray[numArray.length - 2]);
+    console.log(tensDigit);
     let tens = Number(numArray[numArray.length - 2] * 10);
+    console.log(tens);
     let hundredsDigit = Number(numArray[numArray.length - 3]);
     let hundreds = Number(numArray[numArray.length - 3] * 100);
     let thousandsDigit = Number(numArray[numArray.length - 4]);
     let thousands = Number(numArray[numArray.length - 4] * 1000);
 
     let romanOnes = getKeyByValue(roman, ones);
+    console.log(romanOnes);
     let romanTens = getKeyByValue(roman, tens);
     let romanHundreds = getKeyByValue(roman, hundreds);
     let romanThousands = getKeyByValue(roman, thousands);
@@ -64,9 +68,9 @@ function convertToRoman(number) {
         for (let i = 1; i <= ones; i++) {
           romanOnes += "I";
         }
-      } else if (romanOnes > 5 && romanOnes < 9) {
+      } else if (ones > 5 && ones < 9) {
         romanOnes = "V";
-        for (let i = 5; i <= romanOnes; i++) {
+        for (let i = 6; i <= ones; i++) {
           romanOnes += "I";
         }
       }
@@ -82,7 +86,7 @@ function convertToRoman(number) {
         }
       } else if (tensDigit > 5 && tensDigit < 9) {
         romanTens = "L";
-        for (let i = 5; i <= tensDigit; i++) {
+        for (let i = 6; i <= tensDigit; i++) {
           romanTens += "X";
         }
       }
@@ -98,7 +102,7 @@ function convertToRoman(number) {
         }
       } else if (hundredsDigit > 5 && hundredsDigit < 9) {
         romanHundreds = "D";
-        for (let i = 5; i <= hundredsDigit; i++) {
+        for (let i = 6; i <= hundredsDigit; i++) {
           romanHundreds += "C";
         }
       }
